@@ -1,21 +1,13 @@
-export default async function handler(req, res) {
-  // Simple page with a "rendering" bug (very guided, beginner-friendly).
-  // Intentional vulnerability style: unsafe "template-like" replacement.
-  // Players discover a special token reveals the flag.
-
-  const url = new URL(req.url, `http://${req.headers.host}`);
-  const note = url.searchParams.get("note") || "Roses are red, violets are blue...";
-
-  // "Secret" server-side value (in real CTF you’d use env vars)
+module.exports = (req, res) => {
+  const note = (req.query.note || "Roses are red, violets are blue...").toString();
   const secret = "FLAG{valentines_love_note_renderer}";
 
-  // Intentionally unsafe behavior:
-  // If user includes {{secret}}, we substitute server secret.
-  // (This mimics the idea of template injection without being too hard.)
-  const rendered = note.replaceAll("{{secret}}", secret);
+  // Intentional "template-like" bug for beginners:
+  const rendered = note.split("{{secret}}").join(secret);
 
+  res.statusCode = 200;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.status(200).send(`
+  res.end(`
     <html>
       <head>
         <meta charset="utf-8" />
@@ -43,8 +35,7 @@ export default async function handler(req, res) {
           </div>
 
           <div class="hint">
-            Hints: try something that looks like a template token.<br/>
-            Example: <code>{{7*7}}</code> (and… maybe there’s a <code>{{secret}}</code>?)
+            Hint: try <code>{{secret}}</code>
           </div>
         </div>
       </body>
@@ -53,10 +44,10 @@ export default async function handler(req, res) {
 
   function escapeHtml(s) {
     return s
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+      .split("&").join("&amp;")
+      .split("<").join("&lt;")
+      .split(">").join("&gt;")
+      .split('"').join("&quot;")
+      .split("'").join("&#039;");
   }
-}
+};
