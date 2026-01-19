@@ -1,6 +1,6 @@
 module.exports = (req, res) => {
   const note = (req.query.note || "Roses are red, violets are blue...").toString();
-  const secret = "FLAG{valentines_love_note_renderer}";
+  const secret = "FLAG{poison_pen_v3}";
 
   // Intentional "template-like" bug for beginners:
   const rendered = note.split("{{secret}}").join(secret);

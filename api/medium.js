@@ -3,7 +3,7 @@ module.exports = (req, res) => {
     "1": "To: Alex — You make my day. - Secret Admirer",
     "2": "To: Sam — Your smile is undefeated. - Secret Admirer",
     "3": "To: Jamie — Meet me by the roses at 7. - Secret Admirer",
-    "14": "To: YOU — Here’s the secret: FLAG{valentines_idor_matchmaker}"
+    "14": "To: YOU — Here’s the secret: FLAG{idor_u_later}"
   };
 
   const id = (req.query.id || "1").toString();
