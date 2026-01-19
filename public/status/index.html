@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>System Status</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --bg:#060814; --card:#0f1730; --pink:#ff3ea5; --cyan:#31e7ff;
+      --text:#e7ecff; --muted:#93a0c2; --line:rgba(49,231,255,.20);
+      --good:#5bff9f;
+    }
+    body{
+      margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+      font-family:system-ui,Arial; color:var(--text);
+      background:
+        radial-gradient(1100px 650px at 15% 10%, rgba(255,62,165,.20), transparent 55%),
+        radial-gradient(900px 600px at 85% 35%, rgba(49,231,255,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg), #02030a);
+    }
+    .wrap{width:min(880px,92vw); padding:24px;}
+    .brand{letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:var(--muted);}
+    .card{
+      margin-top:10px;
+      background:rgba(15,23,48,.92);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.55);
+      position:relative; overflow:hidden;
+    }
+    .card:before{
+      content:""; position:absolute; inset:-2px;
+      background:
+        radial-gradient(420px 240px at 18% 15%, rgba(255,62,165,.16), transparent 60%),
+        radial-gradient(380px 240px at 85% 70%, rgba(49,231,255,.12), transparent 60%);
+      pointer-events:none;
+    }
+    h1{margin:0 0 8px;font-size:28px; position:relative;}
+    p{margin:8px 0;color:var(--muted);line-height:1.5; position:relative;}
+    .grid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .panel{
+      grid-column: span 12;
+      border:1px solid rgba(49,231,255,.22);
+      border-radius:16px;
+      padding:14px;
+      background: rgba(3,6,18,.55);
+      position:relative;
+    }
+    @media (min-width: 860px){
+      .panel{grid-column: span 4;}
+    }
+    .label{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+    .value{margin-top:6px;font-size:18px;font-weight:700;color:#fff;}
+    .ok{color:var(--good);}
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace;}
+    .footer{
+      margin-top:14px;
+      display:flex; gap:12px; flex-wrap:wrap; justify-content:space-between;
+      color:var(--muted);
+      border-top:1px solid rgba(49,231,255,.12);
+      padding-top:12px;
+    }
+    a{color:var(--cyan); text-decoration:none;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">Affection Overflow • system monitor</div>
+    <div class="card">
+      <h1>🫀 Service Status</h1>
+      <p>Real-time heartbeat of the Affection Overflow platform.</p>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="label">Service</div>
+          <div class="value mono">affection-overflow</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Version</div>
+          <div class="value mono">1.0.0-neon</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Uptime</div>
+          <div class="value ok mono" id="uptime">calculating…</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Heartbeat</div>
+          <div class="value ok">ONLINE 💗</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Cupid Core</div>
+          <div class="value ok">SYNCED</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Neon Mail Queue</div>
+          <div class="value ok">0 pending</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Latency</div>
+          <div class="value mono">12 ms</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Packet Loss</div>
+          <div class="value mono">0.00%</div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Last Deploy</div>
+          <div class="value mono">just now</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="mono tiny">status: all systems nominal</div>
+        <a href="/">return to hub</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fake uptime counter (fun realism)
+    const start = Date.now() - Math.floor(Math.random()*1000*60*60*24*3);
+    function tick(){
+      const s = Math.floor((Date.now() - start)/1000);
+      const h = Math.floor(s/3600);
+      const m = Math.floor((s%3600)/60);
+      const sec = s%60;
+      document.getElementById("uptime").textContent =
+        h+"h "+m+"m "+sec+"s";
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+</body>
+</html>
