@@ -1,7 +1,84 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>admin-love</title></head>
-<body style="font-family:Arial;max-width:720px;margin:40px auto;">
-  <h2>💔 admin-love</h2>
-  <p>No admin panel here. Nice try though 😈</p>
-  <p>Go back: <a href="/">home</a></p>
-</body></html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>admin-love</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--bg:#060814;--card:#0f1730;--pink:#ff3ea5;--cyan:#31e7ff;--text:#e7ecff;--muted:#93a0c2;}
+    body{
+      margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+      font-family:system-ui,Arial; color:var(--text);
+      background:
+        radial-gradient(1100px 650px at 15% 10%, rgba(255,62,165,.20), transparent 55%),
+        radial-gradient(900px 600px at 85% 35%, rgba(49,231,255,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg), #02030a);
+    }
+    .wrap{width:min(920px,92vw); padding:24px;}
+    .brand{letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:var(--muted);}
+    .card{
+      margin-top:10px; background:rgba(15,23,48,.92);
+      border:1px solid rgba(49,231,255,.22);
+      border-radius:18px; padding:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.55);
+      position:relative; overflow:hidden;
+    }
+    .card:before{
+      content:""; position:absolute; inset:-2px;
+      background: radial-gradient(420px 240px at 70% 20%, rgba(255,62,165,.16), transparent 60%);
+      pointer-events:none;
+    }
+    h1{margin:0 0 8px;font-size:26px; position:relative;}
+    p{margin:10px 0;color:var(--muted);line-height:1.55; position:relative;}
+    .gifbox{
+      margin-top:14px; border-radius:16px; overflow:hidden;
+      border:1px solid rgba(49,231,255,.18);
+      background: rgba(49,231,255,.06);
+      position:relative;
+    }
+    img{width:100%; display:block;}
+    .console{
+      margin-top:14px;
+      border-radius:16px;
+      border:1px dashed rgba(255,62,165,.22);
+      background:rgba(3,6,18,.55);
+      padding:14px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      color:#dbe6ff;
+    }
+    .pink{color:var(--pink);}
+    .cyan{color:var(--cyan);}
+    a{color:var(--cyan); text-decoration:none;}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
+    .pill{
+      display:inline-block; padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(49,231,255,.22); background:rgba(3,6,18,.55);
+      color:var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">Affection Overflow • gateway: admin-love</div>
+    <div class="card">
+      <h1>🔐 ADMIN-LOVE GATEWAY</h1>
+      <p>Access denied. The system logged your attempt and sent it to the group chat.</p>
+
+      <div class="gifbox">
+        <img src="/assets/laugh.gif" alt="Laughing GIF">
+      </div>
+
+      <div class="console">
+        <div><span class="cyan">[auth]</span> token=<span class="pink">missing</span></div>
+        <div><span class="cyan">[status]</span> nice try 😭</div>
+        <div><span class="cyan">[tip]</span> real flags live in the actual challenges, not random admin doors</div>
+      </div>
+
+      <div class="row">
+        <a class="pill" href="/">Return to hub</a>
+        <span class="pill">Maybe try /medium or /hard?</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
